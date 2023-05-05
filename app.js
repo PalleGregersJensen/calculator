@@ -1,22 +1,26 @@
-"use strict"
+"use strict";
 
-const buttons = document.querySelectorAll('.calculator input[type="button"]'); // Vælg alle knapper
+const buttons = document.querySelectorAll('.calculator input[type="button"]');
 
-buttons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    const value = button.value;
+function handleClick() {
+  const value = this.value;
 
-    if (value === "AC") {
-      clearDisplay();
-    } else if (value === "DE") {
-      deleteChar();
-    } else if (value === "=") {
-      calculateResult();
-    } else {
-      addCharToDisplay(value);
-    }
-  });
-});
+  if (value === "AC") {
+    clearDisplay();
+  } else if (value === "DE") {
+    deleteChar();
+  } else if (value === "=") {
+    calculateResult();
+  } else {
+    addCharToDisplay(value);
+  }
+}
+
+function addClickHandlers(button) {
+  button.addEventListener("click", handleClick);
+}
+
+buttons.forEach(addClickHandlers);
 
 function clearDisplay() {
   document.querySelector("#display").value = "";
